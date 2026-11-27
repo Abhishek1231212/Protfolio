@@ -1,0 +1,11 @@
+{
+  "/(site)/about/page": "app/(site)/about/page.js",
+  "/(site)/contact/page": "app/(site)/contact/page.js",
+  "/(site)/experience/page": "app/(site)/experience/page.js",
+  "/(site)/freelance/page": "app/(site)/freelance/page.js",
+  "/(site)/page": "app/(site)/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/styles/page": "app/styles/page.js"
+}

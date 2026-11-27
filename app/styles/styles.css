@@ -1,0 +1,299 @@
+/* Style review: three directions on the same palette (page #f6f4f0, ink #171412, accent #ff4829) */
+
+.sr-root {
+  --page: #f6f4f0;
+  --ink: #171412;
+  --accent: #ff4829;
+  --muted: #77716e;
+  --paper: #efe9df;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--page);
+  color: var(--ink);
+  font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+}
+
+.sr-display {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.sr-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.sr-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ---------- Liquid glass materials ---------- */
+
+/* A: frosted paper glass, quiet, closest to the reference */
+.glass-a {
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.24));
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / 0.7);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 0 -1px 0 rgb(23 20 18 / 0.05),
+    0 10px 30px -14px rgb(23 20 18 / 0.28);
+}
+
+/* B: liquid glass with refraction (Chromium bends what sits behind it; other browsers fall back to blur) */
+.glass-b {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 140% at 15% 0%, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0) 55%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.35), rgb(255 255 255 / 0.12));
+  backdrop-filter: blur(10px) saturate(190%) contrast(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(190%) contrast(1.05);
+  backdrop-filter: url(#sr-liquid) blur(8px) saturate(190%);
+  box-shadow:
+    inset 0 1.5px 0 rgb(255 255 255 / 0.95),
+    inset 0 -8px 18px -10px rgb(255 72 41 / 0.18),
+    inset 0 0 0 1px rgb(255 255 255 / 0.45),
+    0 18px 40px -18px rgb(23 20 18 / 0.35);
+}
+
+/* The bright rim that makes the material read as a lens */
+.glass-b::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0.1) 40%, rgb(255 72 41 / 0.35) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* C: smoked glass on ink */
+.glass-c {
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.03));
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    0 18px 40px -18px rgb(0 0 0 / 0.6);
+}
+
+/* When the visitor asks for less transparency, every glass becomes solid */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-a,
+  .glass-b {
+    background: #fbf9f5;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .glass-c {
+    background: #26211e;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Outlined controls keep the reference's dark hairline even when made of glass */
+.sr-outline {
+  border: 1px solid rgb(23 20 18 / 0.35);
+}
+
+.sr-outline-light {
+  border: 1px solid rgb(246 244 240 / 0.28);
+}
+
+/* ---------- Navigation ---------- */
+
+.sr-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-inline: 18px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease-out);
+}
+
+.sr-nav-link:focus-visible,
+.sr-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+/* The hover oval: an outlined pill of liquid glass at 70% that glides between links */
+.sr-oval {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 999px;
+}
+
+.sr-oval-a {
+  border: 1.5px solid rgb(23 20 18 / 0.7);
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.35));
+  backdrop-filter: blur(10px) saturate(170%);
+  -webkit-backdrop-filter: blur(10px) saturate(170%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9);
+}
+
+.sr-oval-b {
+  border: 1.5px solid rgb(255 72 41 / 0.7);
+  background:
+    radial-gradient(120% 160% at 20% 0%, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0) 60%),
+    rgb(255 255 255 / 0.3);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 -6px 12px -8px rgb(255 72 41 / 0.3);
+}
+
+.sr-oval-c {
+  border: 1.5px solid rgb(246 244 240 / 0.7);
+  background: rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25);
+}
+
+/* ---------- Buttons ---------- */
+
+.sr-btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  padding-inline: 22px 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.4s var(--ease-out),
+    transform 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+}
+
+.sr-btn-plain {
+  padding-inline: 22px;
+}
+
+.sr-btn-disc {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--page);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.sr-btn-disc svg {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.sr-btn-disc svg + svg {
+  transform: translate(-180%, 180%);
+}
+
+/* Ink floods outward from the disc on hover, like the reference's CONTACT button */
+.sr-btn-flood::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  margin: -18px -18px 0 0;
+  border-radius: 50%;
+  background: var(--flood, var(--ink));
+  transform: scale(0);
+  transition: transform 0.65s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .sr-btn-flood:hover {
+    color: var(--page);
+  }
+
+  .sr-btn-flood:hover::before {
+    transform: scale(14);
+  }
+
+  .sr-btn:hover .sr-btn-disc svg:first-child {
+    transform: translate(180%, -180%);
+  }
+
+  .sr-btn:hover .sr-btn-disc svg + svg {
+    transform: translate(0, 0);
+  }
+
+  .sr-btn-lift:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ---------- Section chrome ---------- */
+
+.sr-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  container-type: inline-size;
+}
+
+/* Warm blobs behind direction B so the glass has something to refract */
+.sr-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.sr-has-cursor,
+.sr-has-cursor * {
+  cursor: none !important;
+}
+
+.sr-phone {
+  width: 300px;
+  max-width: 100%;
+  aspect-ratio: 9 / 18.5;
+  overflow: hidden;
+  border-radius: 36px;
+  border: 8px solid var(--ink);
+  container-type: inline-size;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sr-btn,
+  .sr-btn::before,
+  .sr-btn-disc svg {
+    transition: none;
+  }
+}

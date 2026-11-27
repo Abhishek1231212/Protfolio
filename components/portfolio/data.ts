@@ -232,10 +232,10 @@ export const CONTACT = {
   phoneHref: 'tel:+919949004765',
   whatsappHref: 'https://wa.me/919949004765',
   socials: [
-    { label: 'LinkedIn', handle: '@your-handle', href: 'https://www.linkedin.com/in/abhishekbichala', icon: 'linkedin' },
-    { label: 'GitHub', handle: '@your-handle', href: 'https://github.com/Abhishek1231212', icon: 'github' },
-    { label: 'Instagram', handle: '@your-handle', href: 'https://www.instagram.com/MotoTechMiles', icon: 'instagram' },
-    { label: 'YouTube', handle: '@your-channel', href: 'https://www.youtube.com/@MotoTechMiles', icon: 'youtube' },
-    { label: 'X', handle: '@your-handle', href: 'https://x.com/your-handle', icon: 'x' }
+    { label: 'LinkedIn', handle: 'Abhishek Bichala', href: 'https://www.linkedin.com/in/abhishekbichala', icon: 'linkedin' },
+    { label: 'GitHub', handle: 'Abhishek Bichala', href: 'https://github.com/Abhishek1231212', icon: 'github' },
+    { label: 'Instagram', handle: 'MotoTechMiles', href: 'https://www.instagram.com/MotoTechMiles', icon: 'instagram' },
+    { label: 'YouTube', handle: 'MotoTechMiles', href: 'https://www.youtube.com/@MotoTechMiles', icon: 'youtube' },
+    { label: 'X', handle: 'Bichala Abhishek', href: 'https://x.com/bichalaabhishek', icon: 'x' }
   ] as const
 }

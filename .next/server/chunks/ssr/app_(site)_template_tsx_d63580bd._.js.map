@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/abhishek/Documents/Calude-Projects/Website%20Design/app/%28site%29/template.tsx"],"sourcesContent":["'use client'\n\nimport type { ReactNode } from 'react'\nimport { motion } from 'motion/react'\nimport { EASE } from '@/components/portfolio/hooks'\n\n/** Each page arrives with a short, soft rise; the template remounts on every navigation */\nexport default function SiteTemplate({ children }: { children: ReactNode }) {\n  return (\n    <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE }}>\n      {children}\n    </motion.div>\n  )\n}\n"],"names":[],"mappings":";;;;;AAGA;AACA;AAJA;;;;AAOe,SAAS,aAAa,EAAE,QAAQ,EAA2B;IACxE,qBACE,8OAAC,wKAAM,CAAC,GAAG;QAAC,SAAS;YAAE,SAAS;YAAG,GAAG;QAAG;QAAG,SAAS;YAAE,SAAS;YAAG,GAAG;QAAE;QAAG,YAAY;YAAE,UAAU;YAAK,MAAM,wIAAI;QAAC;kBAChH;;;;;;AAGP","debugId":null}}]
+}
